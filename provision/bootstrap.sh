@@ -9,7 +9,8 @@ sudo apt -yq update && sudo apt -yq upgrade
 sudo apt -yq install \
 mc \
 cmake \
-postgresql-14
+postgresql-14 \
+python2
 
 
 sudo usermod -a -G vagrant postgres

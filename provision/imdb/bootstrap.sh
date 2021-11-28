@@ -7,11 +7,15 @@ mkdir /tmp/imdb/
 cd /tmp/imdb/
 
 wget ftp://ftp.fu-berlin.de/misc/movies/database/frozendata/*gz
+
+cd /tmp/
 wget https://bitbucket.org/alberanid/imdbpy/get/5.0.zip
 
 unzip 5.0.zip -d ./
 
-imdbpy2sql.py -d PATH_TO_GZ_FILES -u postgres://username:password@hostname/imdbload
+cd alberanid-imdbpy-1f32da30dcae/bin/
+
+python2 imdbpy2sql.py -d /tmp/imdb/ -u postgres://username:password@hostname/imdbload
 
 sudo -u postgres psql -d imdb -c "\copy aka_name to '/tmp/imdb/aka_name.csv' csv"
 sudo -u postgres psql -d imdb -c "\copy aka_title to '/tmp/imdb/aka_title.csv' csv"
