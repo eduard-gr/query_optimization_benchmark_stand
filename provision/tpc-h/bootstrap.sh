@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo -u postgres psql -c "createdb tpch;"
+sudo -u postgres psql -c "createdb tpch"
 sudo -u postgres psql -d tpch -f "/home/vagrant/provision/tpc-h/schema.sql"
 
 cd /home/vagrant/provision/tpc-h/TPC-H_Tools_v3.0.0/dbgen
