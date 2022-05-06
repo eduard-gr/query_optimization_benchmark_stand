@@ -41,5 +41,13 @@ Vagrant.configure("2") do |config|
 		create: true,
 		group: 'vagrant'
 		#mount_options: ['dmode=775,fmode=664']
+
+        # Mount provision
+        config.vm.synced_folder '/home/sk/School/pg_py_plan_forwarding', '/home/vagrant/pg_py_plan_forwarding',
+                create: true,
+                group: 'vagrant'
+                #mount_options: ['dmode=775,fmode=664']
+
+
 end
 

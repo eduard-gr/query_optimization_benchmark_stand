@@ -1,5 +1,8 @@
 # join-order-benchmark
 
+
+https://northcoder.com/post/using-imdb-as-test-data-set/
+
 This package contains the Join Order Benchmark (JOB) queries from:  
 "How Good Are Query Optimizers, Really?"  
 by Viktor Leis, Andrey Gubichev, Atans Mirchev, Peter Boncz, Alfons Kemper, Thomas Neumann  
