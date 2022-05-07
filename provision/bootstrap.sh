@@ -16,10 +16,6 @@ python3-dev
 
 #python2cd 
 
-"pg-py-plan-forwarding" {eaaa6745-90aa-471f-a1fa-c722c372eb7a}
-
-
-
 sudo usermod -a -G vagrant postgres
 
 sudo apt -yq update && sudo apt -yq upgrade
