@@ -1,26 +1,35 @@
 <?php
-$str = <<<EOD
-start query 1 in stream 0 using template query21.tpl
-dsadasd
-end query 1 in stream 0 using template query21.tpl
-EOD;
 
-$str2 = <<<EOD
--- start query 28 in stream 0 using template query28.tpl
-select  *
--- end query 28 in stream 0 using template query28.tpl
-EOD;
+$raw = file_get_contents('/home/sk/School/query_optimization_benchmark_stand/provision/tpc-ds/query/query_0.sql');
 
-//var_dump($str);
+$pattern = '/\-{2}\sstart\squery\s(\d+)[\w\d\s\t\n\.\*\,\'\=\>\<\~\!\/\"\_\-{1}\|\+\(\)\[\]\;]*?\-{2}\send\squery\s.+/i';
 
-//$pattern = '/start.*end/i';
 
-$pattern = '/\-\-\sstart\squery\s\d+[\w\d\s\t\n\.\*\,\_\-\+\(\)\;]+\-\-\send\squery\s\d+/i';
-
-if(preg_match_all($pattern, $str2, $matches)){
-    var_dump($matches);
+$matched = preg_match_all($pattern, $raw, $matches);
+if($matched == false){
+    error_log('unable parse querys');
+    exit;
 }
 
+$previous_index = 0;
+list($querys, $indices) = $matches;
 
+for($i=0,$ii=count($querys);$i<$ii;$i++){
+    $query = $querys[$i];
+    $index = $indices[$i];
 
+    if($previous_index - $index > 1){
+        error_log(sprintf('missed requests between %d and %d',
+            $previous_index,
+            $index
+        ));
+    }
+
+    $previous_index = $index;
+	file_put_contents(
+		sprintf('%s/query-%s.sql',
+			'/home/sk/School/query_optimization_benchmark_stand/provision/tpc-ds/tasks',
+			$index),
+            $query);
+}
 
