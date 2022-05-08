@@ -1,5 +1,4 @@
 -- start query 23 in stream 0 using template query23.tpl
-explain
 with 
 	frequent_ss_items as(
 		select 
