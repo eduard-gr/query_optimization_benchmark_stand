@@ -46,3 +46,5 @@ sudo apt install tcl libsqlite3-tcl libpgtcl postgresql-pltcl-14
 ##zagruzka gotovoj bazi
 createdb sqlite
 pg_restore -d sqlite sqlite.dump
+
+psql -d postgres -c "CREATE ROLE postgres SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'postgres'; "
