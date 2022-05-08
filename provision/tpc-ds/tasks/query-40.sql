@@ -18,8 +18,8 @@ select
  and i_item_sk          = cs_item_sk
  and cs_warehouse_sk    = w_warehouse_sk 
  and cs_sold_date_sk    = d_date_sk
- and d_date between (cast ('2001-05-02' as date) - 30 days)
-                and (cast ('2001-05-02' as date) + 30 days) 
+ and d_date between (cast ('2001-05-02' as date) - '30 days'::interval)
+                and (cast ('2001-05-02' as date) + '30 days'::interval) 
  group by
     w_state,i_item_id
  order by w_state,i_item_id
