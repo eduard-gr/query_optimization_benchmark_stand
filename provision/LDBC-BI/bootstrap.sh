@@ -3,22 +3,24 @@ sudo apt install zstd
 createdb ldbcbi
 
 
-#tut mozno skachat dannie
-https://repository.surfsara.nl/datasets/cwi/snb
 
 psql -d ldbcbi -f LDBC-BI/postgres/ddl/schema.sql
 
-#struktura failov
+mkdir -p /tmp/ldbcbi
+
+#lokalnie testovie dannie
+cp -r LDBC-BI/postgres/test-data/* /tmp/ldbcbi/
+
+#tut mozno skachat dannie
+https://repository.surfsara.nl/datasets/cwi/snb
 #skachivat nado faili, on podoshol dlja zagruzki
 #social_network-csv_merge_foreign-sf0.1
-
+#etot fail pod voprosom
 #social_network-csv_composite_merge_foreign-sf0.1.tar.zst
+psql -d ldbcbi -f LDBC-BI/postgres/ddl/load.sql
 
 psql -d ldbcbi -f LDBC-BI/postgres/ddl/schema_constraints.sql
 psql -d ldbcbi -f LDBC-BI/postgres/ddl/schema_foreign_keys.sql
-
-mkdir -p /tmp/ldbcbi
-cd /tmp/ldbcbi
 
 
 
