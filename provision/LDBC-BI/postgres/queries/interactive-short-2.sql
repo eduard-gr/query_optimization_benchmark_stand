@@ -1,10 +1,7 @@
-/* IS2. Recent messages of a person
-\set personId 10995116277795
- */
 with recursive cposts(m_messageid, m_content, m_ps_imagefile, m_creationdate, m_c_replyof, m_creatorid) AS (
       select m_messageid, m_content, m_ps_imagefile, m_creationdate, m_c_replyof, m_creatorid
       from message
-      where m_creatorid = :personId
+      where m_creatorid = 10995116277795
       order by m_creationdate desc
       limit 10
 ), parent(postid,replyof,orig_postid,creator) AS (
@@ -26,4 +23,4 @@ left join
      )p2  
 on p2.orig_postid = p1.m_messageid
 order by m_creationdate desc, p2.m_messageid desc;
-;
+

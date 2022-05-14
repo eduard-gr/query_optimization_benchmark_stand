@@ -1,8 +1,3 @@
-/* Q4. New topics
-\set personId 10995116277918
-\set startDate '\'2010-10-01\''::date
-\set durationDays 31
- */
 select t_name, count(*) as postCount
 from tag, message, message_tag recent, knows
 where
@@ -10,20 +5,19 @@ where
     mt_tagid = t_tagid and
     m_creatorid = k_person2id and
     m_c_replyof IS NULL and -- post, not comment
-    k_person1id = :personId and
-    m_creationdate >= :startDate and
-    m_creationdate < (:startDate + INTERVAL '1 days' * :durationDays) and
+    k_person1id = 10995116277918 and
+    m_creationdate >= '2010-10-01'::date and
+    m_creationdate < ('2010-10-01'::date + INTERVAL '1 days' * 31) and
     not exists (
         select * from
   (select distinct mt_tagid from message, message_tag, knows
         where
-    k_person1id = :personId and
+    k_person1id = 10995116277918 and
         k_person2id = m_creatorid and
         m_c_replyof IS NULL and -- post, not comment
         mt_messageid = m_messageid and
-        m_creationdate < :startDate) tags
+        m_creationdate < '2010-10-01'::date) tags
   where  tags.mt_tagid = recent.mt_tagid)
 group by t_name
 order by postCount desc, t_name asc
-limit 10
-;
+limit 10;

@@ -36,6 +36,9 @@ sudo -u postgres psql -d imdb -c "\copy title from '/tmp/imdb/title.csv' WITH (F
 
 rm *
 
+#run test
+php -f src/json_plan_aggregator.php imdb /home/sk/School/query_optimization_benchmark_stand/provision/imdb/query
+
 #wget ftp://ftp.fu-berlin.de/misc/movies/database/frozendata/*gz
 
 #cd /tmp/

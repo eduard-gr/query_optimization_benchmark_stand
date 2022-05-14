@@ -48,3 +48,6 @@ createdb sqlite
 pg_restore -d sqlite sqlite.dump
 
 psql -d postgres -c "CREATE ROLE postgres SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN NOREPLICATION NOBYPASSRLS PASSWORD 'postgres'; "
+
+#run test
+php -f src/json_plan_aggregator.php sqlite /home/sk/School/query_optimization_benchmark_stand/provision/SQLiteTestSuite/querys/sqlite5 sqlite5

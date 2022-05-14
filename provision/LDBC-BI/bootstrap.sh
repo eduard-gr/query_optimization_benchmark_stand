@@ -22,6 +22,9 @@ psql -d ldbcbi -f LDBC-BI/postgres/ddl/load.sql
 psql -d ldbcbi -f LDBC-BI/postgres/ddl/schema_constraints.sql
 psql -d ldbcbi -f LDBC-BI/postgres/ddl/schema_foreign_keys.sql
 
+#run test
+php -f src/json_plan_aggregator.php ldbcbi /home/sk/School/query_optimization_benchmark_stand/provision/LDBC-BI/postgres/queries
+
 
 
 git clone https://github.com/ldbc/ldbc_snb_interactive_impls.git

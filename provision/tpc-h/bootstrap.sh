@@ -22,3 +22,7 @@ sudo -u postgres psql -d tpch -c "\copy orders     from '/tmp/orders.tbl'       
 sudo -u postgres psql -d tpch -c "\copy lineitem   from '/tmp/lineitem.tbl'    DELIMITER '|' CSV;"
 
 rm -f /tmp/*.tbl
+
+
+#run test
+php -f src/json_plan_aggregator.php tpch /home/sk/School/query_optimization_benchmark_stand/provision/tpc-h/query

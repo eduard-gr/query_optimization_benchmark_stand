@@ -20,3 +20,7 @@ cd /tmp/tpcds/
 ./load.sh 
 
 rm -rf /tmp/tpcds
+
+
+#run test
+php -f src/json_plan_aggregator.php tpcds /home/sk/School/query_optimization_benchmark_stand/provision/tpc-ds/tasks

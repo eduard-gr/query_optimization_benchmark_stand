@@ -1,9 +1,5 @@
-/* Q14. Trusted connection paths
-\set person1Id 8796093022357
-\set person2Id 8796093022390
- */
 WITH start_node(v) AS (
-    SELECT :person1Id::bigint
+    SELECT 8796093022357::bigint
 )
 select * from (
     WITH RECURSIVE
@@ -13,11 +9,11 @@ select * from (
             (WITH sg(link, depth) as (select * from search_graph)
             SELECT distinct k_person2id, x.depth + 1, path || ARRAY[[x.link, k_person2id]]
             FROM knows, sg x
-            WHERE x.link = k_person1id and not exists(select * from sg y where y.link = :person2Id::bigint) and not exists(select * from sg y where y.link=k_person2id)
+            WHERE x.link = k_person1id and not exists(select * from sg y where y.link = 8796093022390::bigint) and not exists(select * from sg y where y.link=k_person2id)
             )
     ),
     paths(pid, path) AS (
-        SELECT row_number() OVER (), path FROM search_graph where link = :person2Id::bigint
+        SELECT row_number() OVER (), path FROM search_graph where link = 8796093022390::bigint
     ),
     edges(id, e) AS (
         SELECT pid, array_agg(path[d1][d2])
@@ -46,4 +42,4 @@ select * from (
     )
     select path, score from weightedpaths order by score desc)
 x  order by score desc;
-;
+
